@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 22:55:10 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/07 22:58:03 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/07 23:01:07 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main(int ac, char **av)
 		printf("Hello 42 World\n");
 		return (0);
 	}
-	printf("Hello World\n");
+	printf("Hello World!\n");
 	return (0);
 }
