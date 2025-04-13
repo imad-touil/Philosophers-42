@@ -1,1 +1,1 @@
-<h1>Futur Is Loading</h1>
+<h1 align="center">Futur Is Loading</h1>
