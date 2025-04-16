@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   init_table.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 15:05:04 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/13 16:31:38 by imatouil         ###   ########.fr       */
+/*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
+/*   Updated: 2025/04/13 22:20:39 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	ft_atoi(char *arg)
+void	init_table(int ac, char **av, t_table table, t_philo philo)
 {
-	int					i;
-	unsigned long long	r;
-
-	i = 0;
-	r = 0;
-	while (arg[i])
-	{
-		r = r * 10 + arg[i] - 48;
-		if (r > INT_MAX)
-			return (-1);
-		i++;
-	}
-	return (r);
+	printf("Hello Funny World");
 }

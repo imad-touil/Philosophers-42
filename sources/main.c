@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/13 15:14:51 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:37:51 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ static int	valid_args(int ac, char **av)
 
 int	main(int ac, char **av)
 {
+	t_table	tab;
+	t_philo	philo;
+
 	if ((ac != 5 && ac != 6) || !valid_args(ac, av))
 		return (printf("Enter A Valid Arguments\n"), 0);
+	init_table(ac, av, tab, philo);
 	printf("%d\n", ft_atoi(av[5]));
 	return (0);
 }

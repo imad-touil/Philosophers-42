@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/13 15:05:04 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/13 16:31:38 by imatouil         ###   ########.fr       */
+/*   Created: 2025/04/05 22:07:06 by imatouil          #+#    #+#             */
+/*   Updated: 2025/04/16 01:52:56 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
 
-int	ft_atoi(char *arg)
+void	myturn(void)
 {
-	int					i;
-	unsigned long long	r;
-
-	i = 0;
-	r = 0;
-	while (arg[i])
+	while (1337)
 	{
-		r = r * 10 + arg[i] - 48;
-		if (r > INT_MAX)
-			return (-1);
-		i++;
+		printf("My Turn!\n");
+		sleep(1);
 	}
-	return (r);
+}
+
+void	urturn(void)
+{
+	while (1337)
+	{
+		printf("Your Turn!\n");
+		sleep(2);
+	}
+}
+	
+
+int	main(void)
+{
+	myturn();
+	urturn();
 }
