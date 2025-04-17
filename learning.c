@@ -1,71 +1,86 @@
-// #include <pthread.h>
-// #include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   learning.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/17 06:17:11 by imatouil          #+#    #+#             */
+/*   Updated: 2025/04/17 06:47:19 by imatouil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// void *print_hello(void *arg) {
-// 	(void)arg;
-//     printf("Hello from the thread!\n");
-//     return NULL;
-// }
-
-// int main() {
-//     pthread_t thread;
-//     pthread_create(&thread, NULL, print_hello, NULL);
-//     // pthread_join(thread, NULL);  // Wait for the thread to finish
-//     printf("Thread has finished\n");
-//     return 0;
-// }
-
+// ******** Purpose ************
+// The Purpose of this test is to learn about the power of||
+// pthread_mutex_lock and pthread_mutex_unlock ||
 
 // #include <pthread.h>
 // #include <stdio.h>
 // #include <unistd.h>
 
-// void *do_work(void *arg) {
-// 	(void)arg;
-//     sleep(1);
-//     printf("Detached thread work done\n");
+// typedef struct s_test
+// {
+// 	pthread_mutex_t	lock;
+// 	int				counter;
+// }					t_test;
+
+// // int counter = 0;
+// // pthread_mutex_t lock;
+
+// void *increment1(void *arg) {
+// 	t_test	*mutex;
+// 	mutex = (t_test*)arg;
+//     for (int i = 0; i < 10; i++) {
+//         pthread_mutex_lock(&mutex->lock);
+//         mutex->counter++;
+// 		printf("From 1: mutex->counter = %d\n", mutex->counter);
+//         pthread_mutex_unlock(&mutex->lock);
+// 		sleep(1);
+//     }
+//     return NULL;
+// }
+// void *increment2(void *arg) {
+// 	t_test	*mutex;
+// 	mutex = (t_test*)arg;
+//     for (int i = 0; i < 10; i++) {
+//         pthread_mutex_lock(&mutex->lock);
+//         mutex->counter++;
+// 		printf("From 2: mutex->counter = %d\n", mutex->counter);
+//         pthread_mutex_unlock(&mutex->lock);
+// 		sleep(1);
+//     }
+//     return NULL;
+// }
+// void *increment3(void *arg) {
+// 	t_test	*mutex;
+// 	mutex = (t_test*)arg;
+//     for (int i = 0; i < 10; i++) {
+//         pthread_mutex_lock(&mutex->lock);
+//         mutex->counter++;
+// 		printf("From 3: mutex->counter = %d\n", mutex->counter);
+//         pthread_mutex_unlock(&mutex->lock);
+// 		sleep(1);
+//     }
 //     return NULL;
 // }
 
 // int main() {
-//     pthread_t thread;
-//     pthread_create(&thread, NULL, do_work, NULL);
-//     pthread_detach(thread);  // No need to join
-//     printf("Main thread ends (may finish before detached thread)\n");
-//     sleep(2); // Give time to detached thread
+//     pthread_t t1, t2, t3;
+// 	t_test	mutex;
+
+// 	mutex.counter = 0;
+//     pthread_mutex_init(&mutex.lock, NULL);
+
+//     pthread_create(&t1, NULL, increment1, &mutex);
+//     pthread_create(&t2, NULL, increment2, &mutex);
+//     pthread_create(&t3, NULL, increment3, &mutex);
+
+//     pthread_join(t1, NULL);
+//     pthread_join(t2, NULL);
+//     pthread_join(t3, NULL);
+
+//     // pthread_mutex_destroy(&mutex.lock);
+
+//     printf("Final counter value: %d\n", mutex.counter);
 //     return 0;
 // }
-
-
-#include <pthread.h>
-#include <stdio.h>
-
-int counter = 0;
-pthread_mutex_t lock;
-
-void *increment(void *arg) {
-	(void)arg;
-    for (int i = 0; i < 1000000; i++) {
-        pthread_mutex_lock(&lock);
-        counter++;
-        pthread_mutex_unlock(&lock);
-    }
-    return NULL;
-}
-
-int main() {
-    pthread_t t1, t2;
-    pthread_mutex_init(&lock, NULL);
-
-    pthread_create(&t1, NULL, increment, NULL);
-    pthread_create(&t2, NULL, increment, NULL);
-
-    pthread_join(t1, NULL);
-    pthread_join(t2, NULL);
-
-    pthread_mutex_destroy(&lock);
-
-    printf("Final counter value: %d\n", counter);
-    return 0;
-}
-
