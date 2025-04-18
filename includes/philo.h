@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:40:52 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/13 19:43:02 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/18 05:49:25 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@
 # include <limits.h>
 # include <sys/time.h>
 
-struct s_philo t_philo;
-
 typedef struct s_table
 {
-	int			phil_nbr;
-	int			tt_die;
-	int			tt_eat;
-	int			tt_sleep;
-	int			eat_time_nbr;
-	t_philo		*philos;
+	int				phil_nbr;
+	int				tt_die;
+	int				tt_eat;
+	int				tt_sleep;
+	int				eat_time_nbr;
+	struct s_philo	*philos;
 	pthread_mutex_t	*forks;
 }			t_table;
 
@@ -43,5 +41,6 @@ typedef struct s_philo
 }			t_philo;
 
 int	ft_atoi(char *arg);
+void	init_table(int ac, char **av, t_table *table, t_philo *philo);
 
 #endif

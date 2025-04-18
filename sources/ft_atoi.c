@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:05:04 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/13 16:31:38 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/18 06:13:28 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int	ft_atoi(char *arg)
 
 	i = 0;
 	r = 0;
+	if (arg[i] == '+')
+	{
+		if (!arg[1])
+			return (-1);
+		i++;
+	}
 	while (arg[i])
 	{
 		r = r * 10 + arg[i] - 48;
