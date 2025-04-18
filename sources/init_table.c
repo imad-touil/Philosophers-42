@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/18 07:39:16 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/18 09:30:44 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	*routine(void *arg)
 	// think();
 	// eat();
 	// sleep();
-	sleep(2);
 	printf("Heloo, Routine From philoID: %d\n", 3);
+	sleep(1);
 	return (NULL);
 }
 

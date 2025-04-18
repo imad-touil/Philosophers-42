@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:40:52 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/18 07:30:20 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/18 09:27:57 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_philo
 	int			left_fork;
 	int			right_fork;
 	long		t_last_meal;
-	t_table		table;
+	t_table		*table;
 }				t_philo;
 
 int		ft_atoi(char *arg);
