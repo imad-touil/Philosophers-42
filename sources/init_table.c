@@ -6,21 +6,16 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 00:21:08 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 04:11:30 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	eating(int	id)
-{
-	printf("timestamp_in_ms %d is eating |---| ", id);
-}
-
 void	*routine(void *arg)
 {
 	t_philo *philo = (t_philo *)arg;
-	eating(philo->id);
+	// eating(philo->id);
 	// taking_forks();
 	// sleeping();
 	// thinking();
@@ -29,20 +24,50 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-void	init_table(int ac, char **av, t_table *table, t_philo *philo)
+long	get_time_ms()
+{
+	long	ms;
+	struct	timeval tv;
+
+	gettimeofday(&tv, NULL);
+	ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (ms);
+}
+
+static void init_philos(t_table table)
 {
 	int	i;
-	int	num;
 
-	num = ft_atoi(av[1]);
-	table->phil_nbr = num;
 	i = -1;
-	while (++i < num)
+	while (++i < table.phil_nbr)
+		pthread_mutex_init(&table.forks[i], NULL);
+	i = -1;
+	while (++i)
 	{
-		philo[i].id = i;
-		pthread_create(&philo[i].thread, NULL, routine, &philo[i]);
-		pthread_join(philo[i].thread, NULL);
+		table.philos[i].id = i;
+		table.philos[i].t_last_meal = get_time_ms();
 	}
-	printf("From init_table\n");
-	ac = num;
+}
+
+int	init_table(int ac, char **av, t_table *table)
+{
+	table->phil_nbr = ft_atoi(av[1]);
+	table->tt_die = ft_atoi(av[2]);
+	table->tt_eat = ft_atoi(av[3]);
+	table->tt_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		table->eat_count = ft_atoi(av[5]);
+	else
+		table->eat_count = -1;
+	if (table->phil_nbr > 200)
+		return (printf("%sEnter Valid Philosophers Numbers%s\n", RED, RESET), 1);
+	table->forks = malloc(sizeof(pthread_mutex_t) * table->phil_nbr);
+	if (!table->forks)
+		return (perror("Failed On Table Forks"), 1);
+	table->philos = malloc(sizeof(t_philo) * table->phil_nbr);
+	{
+		free(table->forks);
+		return (perror("Failed On Table Phils"), 1);
+	}
+	return (0);
 }

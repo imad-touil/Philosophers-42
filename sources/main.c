@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 02:17:34 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 03:43:43 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	main(int ac, char **av)
 		return (printf("%s", USAGE), 0);
 	tab = malloc(sizeof(t_table));
 	philo = malloc(sizeof(t_philo));
-	init_table(ac, av, tab, philo);
+	if (!init_table(ac, av, tab))
+		return (1);
 	if (ac == 6)
 	{
 		printf("%d\n", ft_atoi(av[5]));
