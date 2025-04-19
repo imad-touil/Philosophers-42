@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:40:52 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 06:09:06 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 07:54:19 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ typedef struct s_philo
 int		ft_atoi(char *arg);
 int		init_table(int ac, char **av, t_table *table);
 void	start_simulation(t_table *table);
+void	thinking(void);
 
 #endif
