@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/18 09:33:46 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:17:34 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ int	main(int ac, char **av)
 	t_philo	*philo;
 
 	if ((ac != 5 && ac != 6) || !valid_args(ac, av))
-		return (printf("Enter A Valid Arguments\n"), 0);
+		return (printf("%s", USAGE), 0);
 	tab = malloc(sizeof(t_table));
 	philo = malloc(sizeof(t_philo));
 	init_table(ac, av, tab, philo);
-	printf("%d\n", ft_atoi(av[5]));
-	int	i = 0;
-	while (i < ft_atoi(av[1]))
-		printf("philosopher id: %d\n", philo[i++].id);
+	if (ac == 6)
+	{
+		printf("%d\n", ft_atoi(av[5]));
+		int	i = 0;
+		while (i < ft_atoi(av[1]))
+			printf("philosopher id: %d\n", philo[i++].id);
+	}
 	return (0);
 }

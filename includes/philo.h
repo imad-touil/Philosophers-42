@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:40:52 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/18 09:27:57 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:17:21 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <stdio.h>
 # include <limits.h>
 # include <sys/time.h>
+
+# define RED "\e[31m"
+# define RESET "\e[0m"
+# define USAGE RED "Usage: \n./philo <nbr_philo> <time_to_die> \
+<time_to_eat> <time_to_sleep> [eat_count]\n" RESET
 
 typedef struct s_table
 {
