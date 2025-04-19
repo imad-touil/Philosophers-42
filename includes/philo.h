@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:40:52 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 04:48:17 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 06:09:06 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 # define RED "\e[31m"
 # define RESET "\e[0m"
-# define USAGE RED "Usage: \n./philo <nbr_philo> <time_to_die> \
-<time_to_eat> <time_to_sleep> [eat_count]\n" RESET
+# define USAGE "Usage: \n./philo <nbr_philo> <time_to_die> \
+<time_to_eat> <time_to_sleep> [eat_count]\n"
 
 typedef struct s_table
 {

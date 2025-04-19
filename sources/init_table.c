@@ -6,23 +6,23 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 05:30:02 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 06:05:54 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	get_time_ms()
+long	get_time_ms(void)
 {
-	long	ms;
-	struct	timeval tv;
+	long			ms;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (ms);
 }
 
-static void init_philos(t_table *table)
+static void	init_philos(t_table *table)
 {
 	int	i;
 
