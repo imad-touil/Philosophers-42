@@ -3,7 +3,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c
+SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c\
+	./sources/simulation.c 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
