@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 11:26:12 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:47:23 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	start_simulation(t_table *table)
 	i = -1;
 	while (++i < table->phil_nbr)
 		pthread_join(table->philos[i].thread, NULL);
-	printf("DebuG, %i\n", table->phil_nbr);
+	printf("DeBuG🐞, %i\n", table->phil_nbr);
 }
