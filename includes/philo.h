@@ -30,7 +30,7 @@ typedef struct s_table
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	protect;
 	struct s_philo	*philos;
-	long			start_time;
+	long long		start_time;
 	int				phil_nbr;
 	int				tt_die;
 	int				tt_eat;
@@ -43,21 +43,22 @@ typedef struct s_philo
 {
 	pthread_t	thread;
 	t_table		*table;
-	long		t_last_meal;
+	long long	t_last_meal;
 	int			id;
 	int			left_fork;
 	int			right_fork;
 	int			meal_counter;
 }				t_philo;
 
-int		ft_atoi(char *arg);
-int		init_table(int ac, char **av, t_table *table);
-void	start_simulation(t_table *table);
-void	thinking(t_philo *philo);
-void	take_fork(t_philo *philo);
-void	release_fork(t_philo *philo);
-void	print_status(t_philo *philo, char *status);
-long	get_time_ms(void);
-void	eating(t_philo *philo);
+int			ft_atoi(char *arg);
+int			init_table(int ac, char **av, t_table *table);
+void		start_simulation(t_table *table);
+void		thinking(t_philo *philo);
+void		take_fork(t_philo *philo);
+void		release_fork(t_philo *philo);
+void		print_status(t_philo *philo, char *status);
+long long	get_time_ms(void);
+void		eating(t_philo *philo);
+void		sleeping(t_philo *philo);
 
 #endif

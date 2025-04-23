@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 08:18:02 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 13:50:10 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 16:51:25 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ void	take_fork(t_philo *philo)
 	t_table	*table;
 
 	table = philo->table;
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_lock(&table->forks[philo->left_fork]);
-		print_status(philo, " has taken a fork");
-		pthread_mutex_lock(&table->forks[philo->right_fork]);
-		print_status(philo, " has taken a fork");
-	}
-	else
-	{
-		pthread_mutex_lock(&table->forks[philo->right_fork]);
-		print_status(philo, " has taken a fork");
-		pthread_mutex_lock(&table->forks[philo->left_fork]);
-		print_status(philo, " has taken a fork");
-	}
+	// if (philo->id % 2 == 0)
+	// {
+	// 	pthread_mutex_lock(&table->forks[philo->left_fork]);
+	// 	print_status(philo, " has taken a fork");
+	// 	pthread_mutex_lock(&table->forks[philo->right_fork]);
+	// 	print_status(philo, " has taken a fork");
+	// }
+	// else
+	// {
+	pthread_mutex_lock(&table->forks[philo->right_fork]);
+	print_status(philo, " has taken a right fork");
+	pthread_mutex_lock(&table->forks[philo->left_fork]);
+	print_status(philo, " has taken a left fork");
+	// }
 }

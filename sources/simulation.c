@@ -6,11 +6,28 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 13:56:53 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:42:57 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+int	is_died(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->table->protect);
+	if (get_time_ms() - philo->t_last_meal > philo->table->tt_die)
+	{
+		philo->table->sim_end = 1;
+		printf("%lld %d died\n", get_time_ms() - philo->table->start_time, philo->id);
+	}
+	if (philo->table->sim_end == 1)
+	{
+		pthread_mutex_unlock(&philo->table->protect);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->table->protect);
+	return (0);
+}
 
 void	*routine(void *arg)
 {
@@ -18,18 +35,23 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
+		usleep(philo->table->tt_sleep * 1000);
+	if (is_died(philo))
+		return NULL;
+	while (1337)
 	{
-		usleep(philo->table->tt_sleep);
-		// print_status(philo, " is sleeping");
-	}
-	// while (1337)
-	// {
 		thinking(philo);
 		take_fork(philo);
+		if (is_died(philo))
+			break ;
 		eating(philo);
+		if (is_died(philo))
+			break ;
+		sleeping(philo);
+		if (is_died(philo))
+			break ;
 		release_fork(philo);
-		// sleeping();
-	// }
+	}
 	return (NULL);
 }
 
@@ -38,6 +60,7 @@ void	start_simulation(t_table *table)
 	int	i;
 
 	i = -1;
+	table->start_time = get_time_ms();
 	while (++i < table->phil_nbr)
 	{
 		pthread_create(&table->philos[i].thread,

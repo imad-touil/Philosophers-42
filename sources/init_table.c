@@ -6,15 +6,15 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 13:14:25 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:23:18 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	get_time_ms(void)
+long long	get_time_ms(void)
 {
-	long			ms;
+	long long		ms;
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
@@ -38,6 +38,7 @@ static void	init_philos(t_table *table)
 		table->philos[i].left_fork = i;
 		table->philos[i].right_fork = (1 + i) % table->phil_nbr;
 	}
+	pthread_mutex_init(&table->protect, NULL);
 }
 
 int	init_table(int ac, char **av, t_table *table)
@@ -46,10 +47,10 @@ int	init_table(int ac, char **av, t_table *table)
 	table->tt_die = ft_atoi(av[2]);
 	table->tt_eat = ft_atoi(av[3]);
 	table->tt_sleep = ft_atoi(av[4]);
+	table->eat_count = -1;
+	table->sim_end = 0;
 	if (ac == 6)
 		table->eat_count = ft_atoi(av[5]);
-	else
-		table->eat_count = -1;
 	if (table->phil_nbr > 200)
 		return (printf("%sEnter Valid Philosophers Numbers%s\n", RED, RESET), 1);
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->phil_nbr);
