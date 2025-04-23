@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:40:52 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 07:54:19 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 08:21:04 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ int		ft_atoi(char *arg);
 int		init_table(int ac, char **av, t_table *table);
 void	start_simulation(t_table *table);
 void	thinking(void);
+void	take_fork(t_philo *philo);
+void	release_fork(t_philo *philo);
 
 #endif

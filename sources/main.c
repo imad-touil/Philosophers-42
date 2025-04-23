@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 07:44:18 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 08:01:51 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,6 @@ int	main(int ac, char **av)
 	start_simulation(tab);
 	return (0);
 }
+
+
+//TODO make it to write Just philo.h <headers>

@@ -6,16 +6,11 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 07:42:12 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/19 08:20:50 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-void	thinking()
-{
-	printf("timestamp_in_ms X is thinking\n");
-}
 
 void	*routine(void *arg)
 {
@@ -25,9 +20,9 @@ void	*routine(void *arg)
 	// while (1337)
 	// {
 		thinking();
-		// take_fork(philo);
+		take_fork(philo);
 		// eating();
-		// release_fork(philo);
+		release_fork(philo);
 		// sleeping();
 	// }
 	return (NULL);
