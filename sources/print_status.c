@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   print_status.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 04:11:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 11:13:15 by imatouil         ###   ########.fr       */
+/*   Created: 2025/04/23 10:13:58 by imatouil          #+#    #+#             */
+/*   Updated: 2025/04/23 11:29:47 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/philo.h"
+#include "../includes/philo.h"
 
-long	get_time_ms()
+void	print_status(t_philo *philo, char *status)
 {
-	long	ms;
-	struct	timeval tv;
-
-	gettimeofday(&tv, NULL);
-	ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (ms);
-}
-
-
-int	main(void)
-{long	ms;
-	struct	timeval tv;
-	gettimeofday(&tv, NULL);
-	printf("ms: %ld\n", get_time_ms());
-	printf("ms: %ld\n", tv.tv_sec);
+	pthread_mutex_lock(&philo->table->protect);
+	printf("%ld %d %s\n", get_time_ms(), philo->id, status);
+	pthread_mutex_unlock(&philo->table->protect);
 }

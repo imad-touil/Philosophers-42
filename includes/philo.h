@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:40:52 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 08:21:04 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:38:51 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_table
 	int				eat_count;
 	struct s_philo	*philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	protect;
 }			t_table;
 
 typedef struct s_philo
@@ -42,6 +43,7 @@ typedef struct s_philo
 	int			id;
 	int			left_fork;
 	int			right_fork;
+	int			meal_counter;
 	long		t_last_meal;
 	t_table		*table;
 }				t_philo;
@@ -49,8 +51,10 @@ typedef struct s_philo
 int		ft_atoi(char *arg);
 int		init_table(int ac, char **av, t_table *table);
 void	start_simulation(t_table *table);
-void	thinking(void);
+void	thinking(t_philo *philo);
 void	take_fork(t_philo *philo);
 void	release_fork(t_philo *philo);
+void	print_status(t_philo *philo, char *status);
+long	get_time_ms(void);
 
 #endif

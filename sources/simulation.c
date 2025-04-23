@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 08:20:50 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:26:12 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->id % 2 == 0)
+	{
+		usleep(philo->table->tt_sleep);
+		// daba na3ss;
+	}
 	// while (1337)
 	// {
-		thinking();
+		thinking(philo);
 		take_fork(philo);
 		// eating();
 		release_fork(philo);
@@ -37,7 +42,9 @@ void	start_simulation(t_table *table)
 	{
 		pthread_create(&table->philos[i].thread,
 			NULL, routine, &table->philos[i]);
-		pthread_join(table->philos[i].thread, NULL);
 	}
+	i = -1;
+	while (++i < table->phil_nbr)
+		pthread_join(table->philos[i].thread, NULL);
 	printf("DebuG, %i\n", table->phil_nbr);
 }
