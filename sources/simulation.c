@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 11:47:23 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:56:53 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	*routine(void *arg)
 	if (philo->id % 2 == 0)
 	{
 		usleep(philo->table->tt_sleep);
-		// daba na3ss;
+		// print_status(philo, " is sleeping");
 	}
 	// while (1337)
 	// {
 		thinking(philo);
 		take_fork(philo);
-		// eating();
+		eating(philo);
 		release_fork(philo);
 		// sleeping();
 	// }

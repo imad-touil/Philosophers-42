@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 08:01:51 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:14:25 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,4 @@ int	main(int ac, char **av)
 }
 
 
-//TODO make it to write Just philo.h <headers>
+//TODO make it to write Just ../includes/philo.h <headers>

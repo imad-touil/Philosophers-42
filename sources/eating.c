@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   eating.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 04:11:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 11:13:15 by imatouil         ###   ########.fr       */
+/*   Created: 2025/04/23 13:52:35 by imatouil          #+#    #+#             */
+/*   Updated: 2025/04/23 13:56:04 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/philo.h"
+#include "../includes/philo.h"
 
-long	get_time_ms()
+void	eating(t_philo *philo)
 {
-	long	ms;
-	struct	timeval tv;
-
-	gettimeofday(&tv, NULL);
-	ms = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (ms);
-}
-
-
-int	main(void)
-{long	ms;
-	struct	timeval tv;
-	gettimeofday(&tv, NULL);
-	printf("ms: %ld\n", get_time_ms());
-	printf("ms: %ld\n", tv.tv_sec);
+	pthread_mutex_lock(&philo->table->protect);
+	philo->t_last_meal = get_time_ms();
+	philo->meal_counter++;
+	print_status(philo, " is eating");
+	pthread_mutex_unlock(&philo->table->protect);
+	usleep(1000);
 }

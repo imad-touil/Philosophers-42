@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ../includes/philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -58,5 +58,6 @@ void	take_fork(t_philo *philo);
 void	release_fork(t_philo *philo);
 void	print_status(t_philo *philo, char *status);
 long	get_time_ms(void);
+void	eating(t_philo *philo);
 
 #endif
