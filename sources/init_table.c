@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/19 07:48:47 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:00:52 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,5 @@ int	init_table(int ac, char **av, t_table *table)
 		return (perror("Failed On Table Phils"), 1);
 	}
 	init_philos(table);
-	printf("Good Luck\n");
 	return (0);
 }
