@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/24 15:42:37 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:23:16 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ void	*routine(void *arg)
 	if (philo->id % 2 == 0 && philo->table->phil_nbr != 1)
 		usleep(philo->table->tt_sleep * 1000);
 	if (philo->table->phil_nbr == 1)
-	{
-		sleeping(philo);
 		philo->t_last_meal = get_time_ms() * - philo->table->tt_die;
-	}
 	if (is_died(philo))
 		return (NULL);
 	while (1337)
