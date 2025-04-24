@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/24 13:13:10 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:42:37 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,23 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 == 0 && philo->table->phil_nbr != 1)
 		usleep(philo->table->tt_sleep * 1000);
+	if (philo->table->phil_nbr == 1)
+	{
+		sleeping(philo);
+		philo->t_last_meal = get_time_ms() * - philo->table->tt_die;
+	}
 	if (is_died(philo))
 		return (NULL);
 	while (1337)
 	{
 		thinking(philo);
 		take_fork(philo);
-		if (is_died(philo))
-			return (NULL) ;
+		// if (is_died(philo))
+		// 	return (NULL) ;
 		eating(philo);
-		release_fork(philo);
+		// release_fork(philo);
 		if (is_died(philo))
 			return (NULL) ;
 		sleeping(philo);

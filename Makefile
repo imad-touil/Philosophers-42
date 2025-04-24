@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 RM = rm -rf
 
 SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c\
@@ -20,3 +20,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+# -fsanitize=thread
