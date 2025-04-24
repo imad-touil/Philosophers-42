@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/23 17:42:57 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:13:10 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ void	*routine(void *arg)
 	if (philo->id % 2 == 0)
 		usleep(philo->table->tt_sleep * 1000);
 	if (is_died(philo))
-		return NULL;
+		return (NULL);
 	while (1337)
 	{
 		thinking(philo);
 		take_fork(philo);
 		if (is_died(philo))
-			break ;
+			return (NULL) ;
 		eating(philo);
+		release_fork(philo);
 		if (is_died(philo))
-			break ;
+			return (NULL) ;
 		sleeping(philo);
 		if (is_died(philo))
-			break ;
-		release_fork(philo);
+			return (NULL) ;
 	}
 	return (NULL);
 }
