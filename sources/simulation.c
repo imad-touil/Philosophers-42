@@ -6,11 +6,21 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/27 11:21:52 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/27 13:08:11 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static void	*routine_helper(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
+	print_status(philo, "has taken a fork");
+	pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
+	sleeping(philo);
+	print_status(philo, "died");
+	return (NULL);
+}
 
 void	*routine(void *arg)
 {
@@ -18,14 +28,7 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->table->phil_nbr == 1)
-	{
-		pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
-		print_status(philo, "has taken a fork");
-        pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
-		sleeping(philo);
-		print_status(philo, "died");
-        return (NULL);
-	}
+		routine_helper(philo);
 	philo->t_last_meal = get_time_ms();
 	if (philo->id % 2 == 0)
 		usleep(philo->table->tt_eat * 500);
@@ -35,8 +38,8 @@ void	*routine(void *arg)
 		eating(philo);
 		release_fork(philo);
 		if (philo->table->eat_count != -1 && 
-            philo->meal_counter >= philo->table->eat_count)
-            break;
+			philo->meal_counter >= philo->table->eat_count)
+			break ;
 		thinking(philo);
 		sleeping(philo);
 	}
