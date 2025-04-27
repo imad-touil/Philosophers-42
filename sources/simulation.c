@@ -6,28 +6,11 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/24 16:52:33 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/27 11:21:52 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-int	is_died(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->table->protect);
-	if (get_time_ms() - philo->t_last_meal > philo->table->tt_die)
-	{
-		philo->table->sim_end = 1;
-		printf("%lld %d died\n", get_time_ms() - philo->table->start_time, philo->id);
-	}
-	if (philo->table->sim_end == 1)
-	{
-		pthread_mutex_unlock(&philo->table->protect);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->table->protect);
-	return (0);
-}
 
 void	*routine(void *arg)
 {
@@ -35,24 +18,27 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->table->phil_nbr == 1)
-		philo->t_last_meal = get_time_ms() * - philo->table->tt_die;
-	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
+		print_status(philo, "has taken a fork");
+        pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
 		sleeping(philo);
-	if (is_died(philo))
-		return (NULL);
-	while (1337)
+		print_status(philo, "died");
+        return (NULL);
+	}
+	philo->t_last_meal = get_time_ms();
+	if (philo->id % 2 == 0)
+		usleep(philo->table->tt_eat * 500);
+	while (!check_death(philo->table))
 	{
 		take_fork(philo);
-		release_fork(philo);
-		thinking(philo);
-		if (is_died(philo))
-			return (NULL) ;
 		eating(philo);
-		if (is_died(philo))
-			return (NULL) ;
+		release_fork(philo);
+		if (philo->table->eat_count != -1 && 
+            philo->meal_counter >= philo->table->eat_count)
+            break;
+		thinking(philo);
 		sleeping(philo);
-		if (is_died(philo))
-			return (NULL) ;
 	}
 	return (NULL);
 }
@@ -68,8 +54,8 @@ void	start_simulation(t_table *table)
 		pthread_create(&table->philos[i].thread,
 			NULL, routine, &table->philos[i]);
 	}
+	monitor(table);
 	i = -1;
 	while (++i < table->phil_nbr)
 		pthread_join(table->philos[i].thread, NULL);
-	printf("DeBuG🐞, %i\n", table->phil_nbr);
 }

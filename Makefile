@@ -5,7 +5,8 @@ RM = rm -rf
 
 SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c\
 	./sources/simulation.c ./sources/thinking.c ./sources/forks.c\
-	./sources/print_status.c ./sources/eating.c 
+	./sources/print_status.c ./sources/eating.c ./sources/utils.c
+
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

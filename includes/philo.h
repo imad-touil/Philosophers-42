@@ -60,5 +60,8 @@ void		print_status(t_philo *philo, char *status);
 long long	get_time_ms(void);
 void		eating(t_philo *philo);
 void		sleeping(t_philo *philo);
+int			is_died(t_philo *philo);
+int			check_death(t_table *table);
+void		monitor(t_table *table);
 
 #endif
