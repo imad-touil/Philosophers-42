@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/27 12:45:20 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:40:27 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	init_philos(t_table *table)
 		table->philos[i].left_fork = i;
 		table->philos[i].right_fork = (1 + i) % table->phil_nbr;
 		table->philos[i].meal_counter = 0;
+		table->philos[i].t_last_meal = get_time_ms();
 	}
 	pthread_mutex_init(&table->protect, NULL);
 }
@@ -51,7 +52,7 @@ int	init_table(int ac, char **av, t_table *table)
 	table->eat_count = -1;
 	if (ac == 6)
 		table->eat_count = ft_atoi(av[5]);
-	if (table->phil_nbr > 200)
+	if (table->phil_nbr < 1 || table->phil_nbr > 200)
 		return (printf("%sEnter Valid Philosophers Numbers%s\n", RED, RESET), 1);
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->phil_nbr);
 	if (!table->forks)
