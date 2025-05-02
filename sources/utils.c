@@ -6,11 +6,20 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:36:10 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/27 12:59:59 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:19:52 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	percise_sleep(int time)
+{
+	long long	t;
+
+	t = get_time_ms();
+	while (get_time_ms() - t < time)
+		usleep(100);
+}
 
 int	is_died(t_philo *philo)
 {

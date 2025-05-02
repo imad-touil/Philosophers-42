@@ -6,20 +6,18 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/27 13:08:11 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:20:45 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void	*routine_helper(t_philo *philo)
+static void	routine_helper(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
 	print_status(philo, "has taken a fork");
 	pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
-	sleeping(philo);
-	print_status(philo, "died");
-	return (NULL);
+	percise_sleep(philo->table->tt_sleep);
 }
 
 void	*routine(void *arg)
@@ -28,10 +26,13 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->table->phil_nbr == 1)
+	{
 		routine_helper(philo);
+		return (NULL);
+	}
 	philo->t_last_meal = get_time_ms();
 	if (philo->id % 2 == 0)
-		usleep(philo->table->tt_eat * 500);
+		percise_sleep(philo->table->tt_eat);
 	while (!check_death(philo->table))
 	{
 		take_fork(philo);
@@ -41,7 +42,7 @@ void	*routine(void *arg)
 			philo->meal_counter >= philo->table->eat_count)
 			break ;
 		thinking(philo);
-		sleeping(philo);
+		percise_sleep(philo->table->tt_sleep);
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 12:44:58 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/27 12:45:04 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:13:47 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void		sleeping(t_philo *philo);
 int			is_died(t_philo *philo);
 int			check_death(t_table *table);
 void		monitor(t_table *table);
+void		percise_sleep(int time);
 
 #endif
