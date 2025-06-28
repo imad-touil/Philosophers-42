@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 RM = rm -rf
 
 SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c\
@@ -13,14 +13,19 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.c ./includes/philo.h
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
-	$(RM) $(OBJ)
+	@$(RM) $(OBJ)
 
 fclean: clean 
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
+
+mk: all clean
 
 # -fsanitize=thread
