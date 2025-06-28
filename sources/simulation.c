@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/28 15:28:50 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/28 17:51:46 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 static void	one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
+	print_status(philo, "has taken a fork");
 	percise_sleep(philo->table->tt_die);
+	pthread_mutex_lock(&philo->table->protect);
+	philo->table->sim_end = 1;
+	pthread_mutex_unlock(&philo->table->protect);
 	print_status(philo, "died");
 	pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
 }
@@ -51,8 +55,8 @@ void	start_simulation(t_table *table)
 {
 	int	i;
 
-	i = -1;
 	table->start_time = get_time_ms();
+	i = -1;
 	while (++i < table->phil_nbr)
 	{
 		pthread_create(&table->philos[i].thread,

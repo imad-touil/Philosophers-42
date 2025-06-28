@@ -6,11 +6,16 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:36:10 by imatouil          #+#    #+#             */
-/*   Updated: 2025/05/01 18:19:52 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/28 16:05:10 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+// void	clean_up()
+// {
+	
+// }
 
 void	percise_sleep(int time)
 {
@@ -24,17 +29,17 @@ void	percise_sleep(int time)
 int	is_died(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->protect);
-	if (get_time_ms() - philo->t_last_meal > philo->table->tt_die)
-	{
-		philo->table->sim_end = 1;
-		pthread_mutex_unlock(&philo->table->protect);
-		printf("%lld %d died\n", get_time_ms() - philo->table->start_time,
-			philo->id);
-	}
 	if (philo->table->sim_end == 1)
 	{
 		pthread_mutex_unlock(&philo->table->protect);
 		return (1);
+	}
+	if (get_time_ms() - philo->t_last_meal > philo->table->tt_die)
+	{
+		philo->table->sim_end = 1;
+		printf("%lld %d died\n", get_time_ms() - philo->table->start_time,
+			philo->id);
+		pthread_mutex_unlock(&philo->table->protect);
 	}
 	pthread_mutex_unlock(&philo->table->protect);
 	return (0);
