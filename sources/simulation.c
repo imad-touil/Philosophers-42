@@ -6,18 +6,18 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/05/01 18:20:45 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/28 15:28:50 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void	routine_helper(t_philo *philo)
+static void	one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
-	print_status(philo, "has taken a fork");
+	percise_sleep(philo->table->tt_die);
+	print_status(philo, "died");
 	pthread_mutex_unlock(&philo->table->forks[philo->left_fork]);
-	percise_sleep(philo->table->tt_sleep);
 }
 
 void	*routine(void *arg)
@@ -27,7 +27,7 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->table->phil_nbr == 1)
 	{
-		routine_helper(philo);
+		one_philo(philo);
 		return (NULL);
 	}
 	philo->t_last_meal = get_time_ms();
