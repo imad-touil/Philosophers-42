@@ -6,16 +6,28 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/29 20:53:57 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/29 23:57:55 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-// void	clean_up(void)
-// {
-// 	printf("Hello World\n");
-// }
+void	clean_up(t_table *table)
+{
+	int	i;
+
+	if (table->forks)
+	{
+		i = -1;
+		while (++i < table->phil_nbr)
+			pthread_mutex_destroy(&table->forks[i]);
+		free(table->forks);
+	}
+	if (table->philos)
+		free(table->philos);
+	pthread_mutex_destroy(&table->protect);
+	free(table);
+}
 
 static int	ft_isdigit(unsigned char c)
 {
@@ -60,6 +72,6 @@ int	main(int ac, char **av)
 	if (init_table(ac, av, tab))
 		return (1);
 	start_simulation(tab);
+	clean_up(tab);
 	return (0);
 }
-// clean_up(); TODO to destroy all mutex in free all allocate memory;
