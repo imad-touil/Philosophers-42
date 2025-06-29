@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/29 23:57:55 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/30 00:56:25 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
-
-void	clean_up(t_table *table)
-{
-	int	i;
-
-	if (table->forks)
-	{
-		i = -1;
-		while (++i < table->phil_nbr)
-			pthread_mutex_destroy(&table->forks[i]);
-		free(table->forks);
-	}
-	if (table->philos)
-		free(table->philos);
-	pthread_mutex_destroy(&table->protect);
-	free(table);
-}
+#include "../includes_bonus/philo_bonus.h"
 
 static int	ft_isdigit(unsigned char c)
 {
@@ -62,16 +45,8 @@ static int	valid_args(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_table	*tab;
-
 	if (ac != 5 && ac != 6)
 		return (printf("%s%s%s", RED, USAGE, RESET), 0);
 	else if (!valid_args(ac, av))
 		return (printf("%sInvalid Arguments\n%s", RED, RESET), 0);
-	tab = malloc(sizeof(t_table));
-	if (init_table(ac, av, tab))
-		return (1);
-	start_simulation(tab);
-	clean_up(tab);
-	return (0);
 }

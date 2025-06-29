@@ -40,35 +40,24 @@ MSG="$(GREEN)\
 
 
 
-NAME = philo
+NAME = philo_bonus
+
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c\
-	./sources/simulation.c ./sources/thinking.c ./sources/forks.c\
-	./sources/print_status.c ./sources/eating.c ./sources/utils.c
-
+SRC = main.c init.c philo_bonus.c routine.c monitor.c utils.c sem_utils.c
 OBJ = $(SRC:.c=.o)
-
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo $(MSG)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c ./includes/philo.h
-	@$(CC) $(CFLAGS) -c $< -o $@
+clean:
+	$(RM) $(OBJ)
 
-clean: 
-	@$(RM) $(OBJ)
-
-fclean: clean 
-	@$(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 
 re: fclean all
-
-mk: all clean
-
-# -fsanitize=thread
