@@ -6,16 +6,11 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:36:10 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/29 18:19:17 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:55:07 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-// void	clean_up(void)
-// {
-// 	printf("Hello World\n");
-// }
 
 void	percise_sleep(t_philo *philo, int time, int flag)
 {
@@ -39,7 +34,7 @@ int	is_died(t_philo *philo)
 	if (get_time_ms() - philo->t_last_meal > philo->table->tt_die)
 	{
 		philo->table->sim_end = 1;
-		printf("%lld %d died\n", get_time_ms() - philo->table->start_time,
+		printf("%lld %d is died\n", get_time_ms() - philo->table->start_time,
 			philo->id);
 		pthread_mutex_unlock(&philo->table->protect);
 	}
@@ -57,6 +52,13 @@ int	check_death(t_table *table)
 	}
 	pthread_mutex_unlock(&table->protect);
 	return (0);
+}
+
+static void	norm_helper(t_table *table)
+{
+	pthread_mutex_lock(&table->protect);
+	table->sim_end = 1;
+	pthread_mutex_unlock(&table->protect);
 }
 
 void	monitor(t_table *table)
@@ -80,9 +82,7 @@ void	monitor(t_table *table)
 		}
 		if (table->eat_count != -1 && done_eating == table->phil_nbr)
 		{
-			pthread_mutex_lock(&table->protect);
-			table->sim_end = 1;
-			pthread_mutex_unlock(&table->protect);
+			norm_helper(table);
 			return ;
 		}
 		usleep(1000);

@@ -6,11 +6,16 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/28 18:24:07 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:53:57 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+// void	clean_up(void)
+// {
+// 	printf("Hello World\n");
+// }
 
 static int	ft_isdigit(unsigned char c)
 {
