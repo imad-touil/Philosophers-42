@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 RM = rm -rf
 
 SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c\

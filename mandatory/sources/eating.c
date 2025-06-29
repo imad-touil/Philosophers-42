@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 13:52:35 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/28 15:03:31 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/29 17:47:11 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	eating(t_philo *philo)
 	philo->t_last_meal = get_time_ms();
 	pthread_mutex_unlock(&philo->table->protect);
 	print_status(philo, "is eating");
-	percise_sleep(philo->table->tt_eat);
+	percise_sleep(philo, philo->table->tt_eat, 1);
 	pthread_mutex_lock(&philo->table->protect);
 	philo->meal_counter++;
 	pthread_mutex_unlock(&philo->table->protect);

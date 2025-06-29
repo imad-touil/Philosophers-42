@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/28 15:31:10 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/28 18:24:07 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int	main(int ac, char **av)
 	if (init_table(ac, av, tab))
 		return (1);
 	start_simulation(tab);
-	// clean_up(); TODO to destroy all mutex in free all allocate memory;
 	return (0);
 }
+// clean_up(); TODO to destroy all mutex in free all allocate memory;
