@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/04/29 16:40:27 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/30 10:48:25 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_philos(t_table *table)
 	while (++i < table->phil_nbr)
 	{
 		table->philos[i].table = table;
-		table->philos[i].id = i;
+		table->philos[i].id = i + 1;
 		table->philos[i].left_fork = i;
 		table->philos[i].right_fork = (1 + i) % table->phil_nbr;
 		table->philos[i].meal_counter = 0;
