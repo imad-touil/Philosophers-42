@@ -5,64 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 12:44:58 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/30 00:11:41 by imatouil         ###   ########.fr       */
+/*   Created: 2025/06/30 13:29:42 by imatouil          #+#    #+#             */
+/*   Updated: 2025/06/30 16:43:54 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
-# include <pthread.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
-# include <limits.h>
 # include <sys/time.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include <semaphore.h>
+# include <fcntl.h>
+# include <pthread.h>
 
 # define RED "\e[31m"
 # define RESET "\e[0m"
 # define USAGE "Usage: \n./philo <nbr_philo> <time_to_die> \
 <time_to_eat> <time_to_sleep> [eat_count]\n"
 
-typedef struct s_table
-{
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	protect;
-	struct s_philo	*philos;
-	long long		start_time;
-	int				phil_nbr;
-	int				tt_die;
-	int				tt_eat;
-	int				tt_sleep;
-	int				eat_count;
-	int				sim_end;
-}			t_table;
-
 typedef struct s_philo
 {
-	pthread_t	thread;
-	t_table		*table;
-	long long	t_last_meal;
-	int			id;
-	int			left_fork;
-	int			right_fork;
-	int			meal_counter;
-}				t_philo;
+	int				id;
+	pid_t			pid;
+	long			last_meal;
+	int				meals_counter;
+	struct t_table	*table;
+}					t_philo;
 
-int			ft_atoi(char *arg);
-int			init_table(int ac, char **av, t_table *table);
-void		start_simulation(t_table *table);
-void		thinking(t_philo *philo);
-void		take_fork(t_philo *philo);
-void		release_fork(t_philo *philo);
-void		print_status(t_philo *philo, char *status);
-long long	get_time_ms(void);
-void		eating(t_philo *philo);
-void		sleeping(t_philo *philo);
-int			is_died(t_philo *philo);
-int			check_death(t_table *table);
-void		monitor(t_table *table);
-void		percise_sleep(t_philo *philo, int time, int flag);
+typedef struct s_table
+{
+	int			philo_count;
+	int			tt_die;
+	int			tt_eat;
+	int			tt_sleep;
+	int			eat_count;
+	long long	start_time;
+	int			stop;
+	t_philo		*philos;
+	sem_t		*forks;
+	sem_t		*write_lock;
+	sem_t		*meal_check;
+}			t_table;
 
 #endif

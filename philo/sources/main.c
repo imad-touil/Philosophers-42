@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 22:26:26 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/30 00:11:52 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:48:15 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	main(int ac, char **av)
 	else if (!valid_args(ac, av))
 		return (printf("%sInvalid Arguments\n%s", RED, RESET), 0);
 	tab = malloc(sizeof(t_table));
+	if (!tab)
+		return (1);
 	if (init_table(ac, av, tab))
 		return (1);
 	start_simulation(tab);
