@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 12:44:58 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/30 00:11:29 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:06:56 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/time.h>
 
 # define RED "\e[31m"
+# define GREEN "\033[32m"
 # define RESET "\e[0m"
 # define USAGE "Usage: \n./philo <nbr_philo> <time_to_die> \
 <time_to_eat> <time_to_sleep> [eat_count]\n"
