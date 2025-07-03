@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:38:42 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/30 10:48:25 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/07/03 01:32:54 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	init_table(int ac, char **av, t_table *table)
 		return (printf("%sEnter Valid Philosophers Numbers%s\n", RED, RESET), 1);
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->phil_nbr);
 	if (!table->forks)
-		return (perror("Failed On Table Forks"), 1);
+		return (printf("Failed On Table Forks"), 1);
 	table->philos = malloc(sizeof(t_philo) * table->phil_nbr);
 	if (!table->philos)
 	{
 		free(table->forks);
-		return (perror("Failed On Table Phils"), 1);
+		return (printf("Failed On Table Phils"), 1);
 	}
 	init_philos(table);
 	return (0);

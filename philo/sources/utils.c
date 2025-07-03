@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:36:10 by imatouil          #+#    #+#             */
-/*   Updated: 2025/07/02 19:59:28 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/07/03 02:03:15 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int	is_died(t_philo *philo)
 	if (get_time_ms() - philo->t_last_meal > philo->table->tt_die)
 	{
 		philo->table->sim_end = 1;
-		printf("%s[%lld]%s %d%s is died%s\n", GREEN, get_time_ms() - philo->table->start_time,
+		printf("%s[%lld]%s %d%s is died%s\n",
+			GREEN, get_time_ms() - philo->table->start_time,
 			RESET, philo->id, RED, RESET);
 		pthread_mutex_unlock(&philo->table->protect);
+		return (1);
 	}
 	pthread_mutex_unlock(&philo->table->protect);
 	return (0);
@@ -68,8 +70,8 @@ void	monitor(t_table *table)
 
 	while (!check_death(table))
 	{
-		i = -1;
 		done_eating = 0;
+		i = -1;
 		while (++i < table->phil_nbr)
 		{
 			if (is_died(&table->philos[i]))

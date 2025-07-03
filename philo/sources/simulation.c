@@ -6,7 +6,7 @@
 /*   By: imatouil <imatouil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 04:22:43 by imatouil          #+#    #+#             */
-/*   Updated: 2025/06/29 18:17:26 by imatouil         ###   ########.fr       */
+/*   Updated: 2025/07/03 01:49:49 by imatouil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*routine(void *arg)
 	philo->t_last_meal = get_time_ms();
 	pthread_mutex_unlock(&philo->table->protect);
 	if (philo->id % 2 == 0)
-		percise_sleep(philo, philo->table->tt_eat, 1);
+		percise_sleep(philo, philo->table->tt_sleep, 1);
 	while (!check_death(philo->table))
 	{
 		take_fork(philo);
