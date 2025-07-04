@@ -42,7 +42,8 @@ MSG="$(GREEN)\
 
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
+# CFLAGS = -Wall -Wextra -Werror -fsanitize=thread #For MacOS 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address #For Linux Dist
 RM = rm -rf
 
 SRC = ./sources/main.c ./sources/ft_atoi.c ./sources/init_table.c\
